@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Cyber Alert</title>
 
 <style>
@@ -18,74 +17,39 @@ body {
     color: #222;
 }
 
-header {
-    background: linear-gradient(135deg, #1769aa, #0d47a1);
-    color: white;
-    text-align: center;
-    padding: 30px 15px;
-}
-
-header h1 {
-    margin: 0 0 10px;
-    font-size: 32px;
-}
-
-header p {
-    margin: 0;
-    font-size: 17px;
-}
-
 .container {
-    max-width: 900px;
-    margin: auto;
+    max-width: 800px;
+    margin: 30px auto;
     padding: 15px;
 }
 
 .card {
     background: white;
-    margin: 18px 0;
-    padding: 22px;
-    border-radius: 16px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.10);
+    padding: 25px;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.12);
 }
 
-.card h2 {
+h1 {
+    text-align: center;
     color: #1769aa;
-    margin-top: 0;
+    margin-bottom: 8px;
 }
 
-ul {
-    line-height: 1.8;
-}
-
-.warning {
-    background: #fff3cd;
-    border-left: 6px solid #ffc107;
-    padding: 15px;
-    border-radius: 8px;
-}
-
-.safe-box {
-    background: #dff6e4;
-    border-left: 6px solid #28a745;
-    padding: 15px;
-    border-radius: 8px;
-}
-
-/* Анализатор */
-
-.analyzer {
-    border: 3px solid #1769aa;
+.subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 25px;
 }
 
 textarea {
     width: 100%;
-    min-height: 150px;
-    resize: vertical;
+    height: 170px;
     padding: 15px;
+    font-size: 16px;
     border: 2px solid #ccd8e5;
     border-radius: 12px;
-    font-size: 16px;
+    resize: vertical;
     outline: none;
 }
 
@@ -93,30 +57,34 @@ textarea:focus {
     border-color: #1769aa;
 }
 
-button {
-    background: #1769aa;
-    color: white;
-    border: none;
-    padding: 13px 22px;
-    border-radius: 9px;
-    font-size: 16px;
-    cursor: pointer;
+.buttons {
+    display: flex;
+    gap: 10px;
     margin-top: 12px;
 }
 
-button:hover {
-    background: #0d4f82;
+button {
+    flex: 1;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    color: white;
 }
 
-.test-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
+.check {
+    background: #1769aa;
 }
 
-.test-buttons button {
+.clear {
+    background: #777;
+}
+
+.test {
     background: #607d8b;
-    font-size: 14px;
+    width: 100%;
+    margin-top: 8px;
 }
 
 #result {
@@ -129,72 +97,59 @@ button:hover {
 .danger {
     background: #ffe1e1;
     border: 2px solid #e53935;
-    color: #b71c1c;
 }
 
 .suspicious {
-    background: #fff1d6;
+    background: #fff0d5;
     border: 2px solid #ff9800;
-    color: #e65100;
 }
 
 .safe {
     background: #ddf7e4;
     border: 2px solid #2e7d32;
-    color: #1b5e20;
 }
 
 .status {
-    font-size: 25px;
+    font-size: 26px;
     font-weight: bold;
-    margin-bottom: 12px;
-}
-
-.reasons-title {
-    font-size: 18px;
-    font-weight: bold;
-    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .reason {
     background: white;
-    color: #333;
-    padding: 9px;
-    margin: 7px 0;
-    border-radius: 7px;
+    padding: 10px;
+    margin-top: 7px;
+    border-radius: 8px;
 }
 
-.example {
-    background: #f5f8fc;
-    border: 1px solid #d8e1eb;
-    padding: 12px;
-    border-radius: 10px;
-    margin-top: 10px;
+.test-box {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 2px solid #eee;
+}
+
+.test-box h2 {
+    color: #1769aa;
 }
 
 footer {
     text-align: center;
-    background: #12344d;
-    color: white;
-    padding: 20px;
-    margin-top: 30px;
+    color: #777;
+    margin-top: 20px;
+    font-size: 13px;
 }
 
-@media (max-width: 600px) {
-    header h1 {
-        font-size: 26px;
+@media(max-width:600px) {
+    .container {
+        margin: 10px auto;
     }
 
     .card {
-        padding: 17px;
+        padding: 18px;
     }
 
-    button {
-        width: 100%;
-    }
-
-    .test-buttons button {
-        width: 100%;
+    .buttons {
+        flex-direction: column;
     }
 }
 </style>
@@ -202,185 +157,85 @@ footer {
 
 <body>
 
-<header>
-    <h1>🔐 CYBER ALERT</h1>
-    <p>Әлеуметтік желілердегі жеке деректерді қорғау</p>
-</header>
-
 <div class="container">
 
-<!-- НЕГІЗГІ ТЕКСЕРГІШ -->
+<div class="card">
 
-<div class="card analyzer">
+<h1>🔐 CYBER ALERT</h1>
 
-<h2>🛡️ Хабарламаны тексеру</h2>
-
-<p>
-Күмәнді SMS немесе хабарламаны төмендегі жерге енгізіңіз.
-Жүйе қауіпті белгілерді автоматты түрде анықтайды.
-</p>
+<div class="subtitle">
+Күмәнді хабарламаларды автоматты түрде тексеру
+</div>
 
 <textarea id="message"
-placeholder="Мысалы: Сіз 500 000 теңге ұтып алдыңыз! Сыйлықты алу үшін сілтемеге өтіп, карта нөміріңізді енгізіңіз."></textarea>
+placeholder="Хабарламаны осы жерге жазыңыз немесе көшіріп қойыңыз..."></textarea>
 
-<button onclick="analyzeMessage()">
-🔍 Тексеру
+<div class="buttons">
+
+<button class="check" onclick="checkMessage()">
+🔍 Хабарламаны тексеру
 </button>
+
+<button class="clear" onclick="clearMessage()">
+🗑️ Тазалау
+</button>
+
+</div>
 
 <div id="result"></div>
 
-</div>
 
+<div class="test-box">
 
-<!-- ТЕСТ МЫСАЛДАРЫ -->
+<h2>🧪 Тест</h2>
 
-<div class="card">
-
-<h2>🧪 Тест үшін мысалдар</h2>
-
-<p>Төмендегі батырмаларды басып, жүйені тексеруге болады:</p>
-
-<div class="test-buttons">
-
-<button onclick="setExample(1)">
-🔴 Қауіпті SMS
+<button class="test" onclick="testDanger()">
+🔴 Қауіпті мысал
 </button>
 
-<button onclick="setExample(2)">
-🔴 SMS код сұрау
+<button class="test" onclick="testBank()">
+💳 Банк туралы мысал
 </button>
 
-<button onclick="setExample(3)">
-🟠 Күмәнді SMS
+<button class="test" onclick="testPrize()">
+🎁 Ұтыс туралы мысал
 </button>
 
-<button onclick="setExample(4)">
-🟢 Қауіпсіз SMS
+<button class="test" onclick="testSafe()">
+🟢 Қауіпсіз мысал
 </button>
 
 </div>
 
-<div class="example">
-<b>Мысал 1:</b><br>
-Сіз 500 000 теңге ұтып алдыңыз! Сыйлықты алу үшін
-https://example.com сайтына өтіп, карта нөміріңізді және CVV кодты енгізіңіз.
 </div>
-
-<div class="example">
-<b>Мысал 2:</b><br>
-Банк қызметкеріміз. Қауіпсіздік үшін SMS арқылы келген
-кодты жіберіңіз.
-</div>
-
-<div class="example">
-<b>Мысал 3:</b><br>
-Аккаунтыңыз бұғатталуы мүмкін. Тексеру үшін ақпаратты жаңартыңыз.
-</div>
-
-<div class="example">
-<b>Мысал 4:</b><br>
-Сәлеметсіз бе! Ертең сағат 10:00-де ата-аналар жиналысы болады.
-</div>
-
-</div>
-
-
-<!-- ЖЕКЕ ДЕРЕКТЕР -->
-
-<div class="card">
-
-<h2>📱 Жеке деректер дегеніміз не?</h2>
-
-<p>
-Жеке деректер — адамды анықтауға мүмкіндік беретін ақпарат.
-</p>
-
-<ul>
-<li>Аты-жөні</li>
-<li>Телефон нөмірі</li>
-<li>Мекенжайы</li>
-<li>Құпиясөздері</li>
-<li>Жеке фотосуреттері</li>
-<li>Банк картасының мәліметтері</li>
-</ul>
-
-</div>
-
-
-<!-- ҚАУІПТЕР -->
-
-<div class="card">
-
-<h2>⚠️ Негізгі қауіптер</h2>
-
-<div class="warning">
-
-<p>❗ Бейтаныс адамдардың хабарламалары</p>
-<p>❗ Жалған аккаунттар</p>
-<p>❗ Фишингтік сілтемелер</p>
-<p>❗ Құпиясөзді ұрлау</p>
-<p>❗ Жеке ақпаратты рұқсатсыз тарату</p>
-
-</div>
-
-</div>
-
-
-<!-- ҚАУІПСІЗДІК -->
-
-<div class="card">
-
-<h2>🛡️ Қауіпсіздік ережелері</h2>
-
-<div class="safe-box">
-
-<p>✅ Күрделі құпиясөз қолданыңыз.</p>
-<p>✅ Екі факторлы қорғауды қосыңыз.</p>
-<p>✅ Бейтаныс сілтемелерді ашпаңыз.</p>
-<p>✅ Құпиясөзді ешкімге айтпаңыз.</p>
-<p>✅ SMS кодты басқа адамға жібермеңіз.</p>
-<p>✅ Банк картасының мәліметтерін бермеңіз.</p>
-
-</div>
-
-</div>
-
-
-<!-- ЕСТЕ САҚТА -->
-
-<div class="card">
-
-<h2>🔑 Есте сақта!</h2>
-
-<p>
-Интернеттегі қауіпсіздік — өз қолыңда!
-Жеке деректеріңді қорға және күмәнді ақпаратқа сенбе.
-</p>
-
-</div>
-
-</div>
-
 
 <footer>
-<p>© 2026 Cyber Alert | Интернет қауіпсіздігі</p>
+© 2026 Cyber Alert
 </footer>
+
+</div>
 
 
 <script>
 
-function analyzeMessage() {
+function checkMessage() {
 
-    const text = document.getElementById("message").value.trim();
+    const text = document
+        .getElementById("message")
+        .value
+        .trim();
+
     const result = document.getElementById("result");
 
     if (text === "") {
+
         result.style.display = "block";
         result.className = "suspicious";
+
         result.innerHTML = `
             <div class="status">⚠️ Мәтін енгізіңіз</div>
-            <p>Тексеру үшін хабарлама жазыңыз.</p>
         `;
+
         return;
     }
 
@@ -389,183 +244,335 @@ function analyzeMessage() {
     let score = 0;
     let reasons = [];
 
-    /* 1. СІЛТЕМЕ */
 
-    const urlRegex = /(https?:\/\/|www\.|t\.me\/|bit\.ly\/|tinyurl\.com\/|wa\.me\/)[^\s]+/i;
+    /* =========================
+       1. СІЛТЕМЕЛЕР
+       ========================= */
 
-    if (urlRegex.test(text)) {
-        score += 5;
+    if (
+        /(https?:\/\/|www\.|t\.me\/|bit\.ly\/|tinyurl\.com|goo\.gl|wa\.me\/|telegram\.me\/)/i
+        .test(text)
+    ) {
+
+        score += 6;
 
         reasons.push(
-            "🔗 Сілтеме анықталды — жоба ережесі бойынша қауіпті белгі."
+            "🔗 Сілтеме анықталды"
         );
     }
 
 
-    /* 2. БАНК КАРТАСЫ */
+    /* =========================
+       2. БАНК КАРТАСЫ
+       ========================= */
 
     const cardRegex = /\b(?:\d[ -]*?){13,19}\b/;
 
     if (cardRegex.test(text)) {
-        score += 6;
+
+        score += 7;
 
         reasons.push(
-            "💳 Банк картасының нөміріне ұқсас сан анықталды."
+            "💳 Банк картасының нөмірі анықталды"
         );
     }
 
 
-    /* 3. CVV / CVC */
+    /* =========================
+       3. CVV / CVC
+       ========================= */
 
-    const cvvRegex =
-        /(cvv|cvc|қауіпсіздік коды|код безопасности)[^\d]{0,20}\d{3,4}/i;
+    if (
+        /(cvv|cvc|қауіпсіздік коды|код безопасности|код карты)/i
+        .test(lower)
+    ) {
 
-    if (cvvRegex.test(text)) {
-        score += 6;
+        score += 7;
 
         reasons.push(
-            "🔐 CVV/CVC немесе қауіпсіздік коды сұралған."
+            "🔐 CVV/CVC немесе карта қауіпсіздік коды туралы ақпарат анықталды"
         );
     }
 
 
-    /* 4. SMS / OTP КОД */
+    /* =========================
+       4. ҚҰПИЯСӨЗ / LOGIN
+       ========================= */
 
-    const otpWords =
-        /(sms код|смс код|код из смс|одноразовый код|код подтверждения|растау коды|бір реттік код|otp|verification code)/i;
-
-    const requestWords =
-        /(жібер|жібере|айтыңыз|жазыңыз|енгіз|введите|отправьте|сообщите|скажите|предоставьте|введите код)/i;
-
-    if (otpWords.test(lower) && requestWords.test(lower)) {
-
-        score += 6;
-
-        reasons.push(
-            "📲 SMS/OTP растау коды басқа адамға беруді сұрайды."
-        );
-    }
-
-
-    /* 5. ҚҰПИЯСӨЗ */
-
-    const passwordWords =
-        /(пароль|құпиясөз|құпия сөз|пароліңіз|логин|login|password)/i;
-
-    if (passwordWords.test(lower) && requestWords.test(lower)) {
+    if (
+        /(пароль|пароліңіз|пароля|құпиясөз|құпия сөз|логин|login|password|құпия код)/i
+        .test(lower)
+    ) {
 
         score += 5;
 
         reasons.push(
-            "🔑 Құпиясөз немесе логин мәліметін енгізу/жіберу сұралған."
+            "🔑 Құпиясөз немесе логин туралы ақпарат анықталды"
         );
     }
 
 
-    /* 6. БАНК МӘЛІМЕТТЕРІ */
+    /* =========================
+       5. БАНК
+       ========================= */
 
-    const bankWords =
-        /(банк картасы|карта нөмірі|номер карты|банковская карта|iban|бик|банк шоты|банковский счет|кредит)/i;
-
-    if (bankWords.test(lower) && requestWords.test(lower)) {
-
-        score += 5;
-
-        reasons.push(
-            "🏦 Банк немесе карта мәліметтері сұралған."
-        );
-    }
-
-
-    /* 7. ҰТЫС / СЫЙЛЫҚ */
-
-    const prizeWords =
-        /(ұтып алдыңыз|ұтып|ұтыс|жүлде|сыйлық|вы выиграли|выигрыш|приз|подарок|лотерея)/i;
-
-    if (prizeWords.test(lower)) {
+    if (
+        /(банк|банковский|банковская|банк қызметкері|банк сотрудник|банк қызметкеріміз|банковские данные)/i
+        .test(lower)
+    ) {
 
         score += 4;
 
         reasons.push(
-            "🎁 Ұтыс немесе сыйлық туралы хабарлама анықталды."
+            "🏦 Банкке қатысты күмәнді сөз анықталды"
         );
     }
 
 
-    /* 8. АҚША */
+    /* =========================
+       6. КАРТА
+       ========================= */
 
-    const moneyWords =
-        /(ақша|теңге|тенге|₸|рубль|рублей|доллар|миллион|500 000|1000000|1 000 000|ақша алу|получить деньги)/i;
+    if (
+        /(банк картасы|карта нөмірі|номер карты|банковская карта|картаңызды|картаңызды енгіз|карта деректері|карта данные)/i
+        .test(lower)
+    ) {
 
-    if (moneyWords.test(lower)) {
-
-        score += 2;
+        score += 5;
 
         reasons.push(
-            "💰 Ақша немесе қаржылық ұсыныс анықталды."
+            "💳 Банк картасының деректері туралы сөз анықталды"
         );
     }
 
 
-    /* 9. ШҰҒЫЛДЫҚ */
+    /* =========================
+       7. АҚША
+       ========================= */
 
-    const urgencyWords =
-        /(шұғыл|жедел|қазір|тез|срочно|немедленно|сейчас|аккаунт бұғатталады|аккаунтыңыз бұғатталады|аккаунт заблокируют|заблокирован|истекает)/i;
-
-    if (urgencyWords.test(lower)) {
+    if (
+        /(ақша|теңге|тенге|₸|доллар|рубль|евро|миллион|миллиард|қаржы|қаржылық|деньги|денег|финансы|финансовый|финансовая|получить деньги)/i
+        .test(lower)
+    ) {
 
         score += 3;
 
         reasons.push(
-            "⏰ Шұғыл әрекет жасауға қысым көрсетілген."
+            "💰 Ақша немесе қаржы туралы сөз анықталды"
         );
     }
 
 
-    /* 10. БАНК ҚЫЗМЕТКЕРІ */
+    /* =========================
+       8. ҰТЫС / ЖҮЛДЕ
+       ========================= */
 
-    const authorityWords =
-        /(банк қызметкері|служба безопасности банка|служба безопасности|полиция|салық қызметі|налоговая|қауіпсіздік қызметі)/i;
+    if (
+        /(ұтып алдыңыз|ұтып алдың|ұтыс|ұтыс ойыны|жүлде|сыйлық|сыйлық ұтып|жеңімпаз|жеңдіңіз|лотерея|приз|вы выиграли|выиграли|выигрыш|подарок|победитель|победили|лотерея)/i
+        .test(lower)
+    ) {
 
-    if (authorityWords.test(lower) && requestWords.test(lower)) {
+        score += 5;
+
+        reasons.push(
+            "🎁 Ұтыс, жүлде немесе сыйлық туралы сөз анықталды"
+        );
+    }
+
+
+    /* =========================
+       9. АҚША АЛУ / АУДАРУ
+       ========================= */
+
+    if (
+        /(ақша алыңыз|ақша алуға|ақшаңызды алыңыз|ақша аударыңыз|ақша аудару|төлем жасаңыз|төлем жаса|төлеуіңіз керек|переведите деньги|перевод денег|оплатите|оплату|получите деньги|заберите деньги)/i
+        .test(lower)
+    ) {
+
+        score += 5;
+
+        reasons.push(
+            "💸 Ақша аудару немесе төлем жасауға шақыру анықталды"
+        );
+    }
+
+
+    /* =========================
+       10. ШҰҒЫЛДЫҚ
+       ========================= */
+
+    if (
+        /(шұғыл|жедел|тез|қазір|дәл қазір|бірден|соңғы мүмкіндік|уақыт аз|срочно|немедленно|сейчас|прямо сейчас|быстро|последний шанс|времени мало)/i
+        .test(lower)
+    ) {
+
+        score += 3;
+
+        reasons.push(
+            "⏰ Шұғыл әрекет жасауға қысым көрсетілген"
+        );
+    }
+
+
+    /* =========================
+       11. АККАУНТ БҰҒАТТАУ
+       ========================= */
+
+    if (
+        /(аккаунт бұғатталады|аккаунтыңыз бұғатталады|аккаунт бұғатталды|аккаунтыңыз бұғатталды|есептік жазба бұғатталады|профиль бұғатталады|заблокируют аккаунт|аккаунт заблокирован|аккаунт будет заблокирован|страница заблокирована|профиль заблокирован)/i
+        .test(lower)
+    ) {
+
+        score += 5;
+
+        reasons.push(
+            "🚫 Аккаунтты бұғаттау туралы қорқыту анықталды"
+        );
+    }
+
+
+    /* =========================
+       12. ФИШИНГ
+       ========================= */
+
+    if (
+        /(фишинг|фишинговый|жалған сайт|жалған сілтеме|поддельный сайт|фальшивый сайт|қауіпсіздік тексеруі|проверка безопасности|растау қажет|нужно подтвердить|подтвердите аккаунт)/i
+        .test(lower)
+    ) {
+
+        score += 5;
+
+        reasons.push(
+            "🎣 Фишингке тән белгі анықталды"
+        );
+    }
+
+
+    /* =========================
+       13. ЖЕКЕ ДЕРЕКТЕР
+       ========================= */
+
+    if (
+        /(жеке деректер|жеке мәлімет|жеке ақпарат|персональные данные|личные данные|личная информация|жеке куәлік|удостоверение личности|паспорт|құжат нөмірі|номер документа)/i
+        .test(lower)
+    ) {
 
         score += 4;
 
         reasons.push(
-            "👤 Банк/қауіпсіздік қызметкері ретінде мәлімет сұрау белгісі бар."
+            "🪪 Жеке деректерді сұрауға қатысты белгі анықталды"
         );
     }
 
 
-    /* НӘТИЖЕ */
+    /* =========================
+       14. ТЕЛЕФОН / НӨМІР
+       ========================= */
 
-    let status = "";
-    let className = "";
-    let advice = "";
+    if (
+        /(телефон нөмірі|номер телефона|телефон номер|нөміріңіз|ваш номер|телефонды жібер|телефонды жазыңыз)/i
+        .test(lower)
+    ) {
 
-    if (score >= 5) {
+        score += 3;
+
+        reasons.push(
+            "📱 Телефон нөміріне қатысты белгі анықталды"
+        );
+    }
+
+
+    /* =========================
+       15. БОНУС / СЫЙАҚЫ
+       ========================= */
+
+    if (
+        /(бонус|бонустар|сыйақы|ақшалай сыйлық|премия|компенсация|өтемақы|компенсация получите|бонус получите)/i
+        .test(lower)
+    ) {
+
+        score += 3;
+
+        reasons.push(
+            "🎉 Бонус немесе қаржылық сыйақы туралы белгі анықталды"
+        );
+    }
+
+
+    /* =========================
+       16. САЛЫҚ / ПОЛИЦИЯ / РЕСМИ ҚЫЗМЕТ
+       ========================= */
+
+    if (
+        /(полиция|салық қызметі|салық басқармасы|налоговая|полиция сообщает|прокуратура|қауіпсіздік қызметі|служба безопасности|мемлекеттік қызмет|государственная служба)/i
+        .test(lower)
+    ) {
+
+        score += 4;
+
+        reasons.push(
+            "👤 Ресми мекеме немесе қауіпсіздік қызметі атынан хабарлама белгісі анықталды"
+        );
+    }
+
+
+    /* =========================
+       17. ӘРЕКЕТ ЖАСАУҒА ШАҚЫРУ
+       ========================= */
+
+    if (
+        /(енгізіңіз|енгіз|жазыңыз|жіберіңіз|жібер|айтыңыз|беріңіз|толтырыңыз|растаңыз|тексеріңіз|ашыңыз|басыңыз|введите|введи|отправьте|отправь|сообщите|скажите|предоставьте|заполните|подтвердите|проверьте|откройте|нажмите)/i
+        .test(lower)
+    ) {
+
+        score += 2;
+
+        reasons.push(
+            "👉 Белгілі бір әрекетті орындауға шақыру анықталды"
+        );
+    }
+
+
+    /* =========================
+       НӘТИЖЕ
+       ========================= */
+
+    let status;
+    let className;
+    let advice;
+
+
+    if (score >= 6) {
 
         status = "🔴 ҚАУІПТІ";
+
         className = "danger";
 
         advice =
-            "Бұл хабарламада бірнеше қауіпті белгі анықталды. Жеке деректерді, карта мәліметтерін немесе кодтарды бермеңіз.";
+        "Жеке деректерді бермеңіз, ақша аудармаңыз және күмәнді сілтемеге өтпеңіз.";
 
-    } else if (score >= 2) {
+    }
+
+    else if (score >= 3) {
 
         status = "🟠 КҮМӘНДІ";
+
         className = "suspicious";
 
         advice =
-            "Хабарламада күмәнді белгілер бар. Ақпаратты тексермей тұрып сілтемеге өтпеңіз және жеке деректерді жібермеңіз.";
+        "Хабарламаны мұқият тексеріңіз. Жеке ақпаратты бермес бұрын ақпарат көзін анықтаңыз.";
 
-    } else {
+    }
+
+    else {
 
         status = "🟢 ҚАУІПСІЗ";
+
         className = "safe";
 
         advice =
-            "Айқын қауіпті белгі анықталған жоқ. Дегенмен бейтаныс адамдарға жеке деректерді бермеңіз.";
+        "Айқын қауіпті белгі анықталған жоқ.";
+
     }
 
 
@@ -574,9 +581,7 @@ function analyzeMessage() {
     if (reasons.length > 0) {
 
         reasonsHTML = `
-            <div class="reasons-title">
-                🔎 Анықталған белгілер:
-            </div>
+            <h3>🔎 Анықталған белгілер</h3>
         `;
 
         reasons.forEach(function(reason) {
@@ -589,17 +594,18 @@ function analyzeMessage() {
 
         });
 
-    } else {
+    }
+
+    else {
 
         reasonsHTML = `
-            <div class="reasons-title">
-                🔎 Анықталған белгілер:
-            </div>
+            <h3>🔎 Анықталған белгілер</h3>
 
             <div class="reason">
-                ✅ Қауіпті белгі анықталған жоқ.
+                ✅ Қауіпті белгі анықталған жоқ
             </div>
         `;
+
     }
 
 
@@ -613,60 +619,77 @@ function analyzeMessage() {
             ${status}
         </div>
 
-        <p>
-            <b>Бағалау:</b> ${score} балл
-        </p>
-
         ${reasonsHTML}
 
-        <div class="reasons-title">
-            💡 Ұсыныс:
-        </div>
+        <h3>💡 Ұсыныс</h3>
 
         <div class="reason">
             ${advice}
         </div>
 
     `;
-
 }
 
 
-/* ТЕСТ МЫСАЛДАРЫ */
+/* ТАЗАЛАУ */
 
-function setExample(number) {
+function clearMessage() {
 
-    const message = document.getElementById("message");
+    document.getElementById("message").value = "";
 
-    if (number === 1) {
+    document.getElementById("result").style.display = "none";
+}
 
-        message.value =
-        "Сіз 500 000 теңге ұтып алдыңыз! Сыйлықты алу үшін https://example.com сайтына өтіп, карта нөміріңізді және CVV кодты енгізіңіз.";
 
-    }
+/* =========================
+   ТЕСТ 1
+   ========================= */
 
-    if (number === 2) {
+function testDanger() {
 
-        message.value =
-        "Банк қызметкеріміз. Қауіпсіздік үшін SMS арқылы келген кодты жіберіңіз.";
+    document.getElementById("message").value =
+    "Сіз 500 000 теңге ұтып алдыңыз! Сыйлықты алу үшін https://example.com сайтына өтіп, карта нөміріңізді және CVV кодты енгізіңіз.";
 
-    }
+    checkMessage();
+}
 
-    if (number === 3) {
 
-        message.value =
-        "Аккаунтыңыз бұғатталуы мүмкін. Тексеру үшін ақпаратты жаңартыңыз.";
+/* =========================
+   ТЕСТ 2
+   ========================= */
 
-    }
+function testBank() {
 
-    if (number === 4) {
+    document.getElementById("message").value =
+    "Банк қызметкеріміз. Аккаунтыңыз бұғатталмауы үшін карта нөміріңізді және құпиясөзіңізді енгізіңіз.";
 
-        message.value =
-        "Сәлеметсіз бе! Ертең сағат 10:00-де ата-аналар жиналысы болады.";
+    checkMessage();
+}
 
-    }
 
-    analyzeMessage();
+/* =========================
+   ТЕСТ 3
+   ========================= */
+
+function testPrize() {
+
+    document.getElementById("message").value =
+    "Құттықтаймыз! Сіз жүлде ұтып алдыңыз. Ақшаны алу үшін қазір төлем жасаңыз.";
+
+    checkMessage();
+}
+
+
+/* =========================
+   ТЕСТ 4
+   ========================= */
+
+function testSafe() {
+
+    document.getElementById("message").value =
+    "Сәлеметсіз бе! Ертең сағат 10:00-де ата-аналар жиналысы болады.";
+
+    checkMessage();
 }
 
 </script>
