@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Cyber Alert</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #eef5ff;
+    color: #222;
+}
+
+header {
+    background: linear-gradient(135deg, #1769aa, #0d47a1);
+    color: white;
+    text-align: center;
+    padding: 30px 15px;
+}
+
+header h1 {
+    margin: 0 0 10px;
+    font-size: 32px;
+}
+
+header p {
+    margin: 0;
+    font-size: 17px;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 15px;
+}
+
+.card {
+    background: white;
+    margin: 18px 0;
+    padding: 22px;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.10);
+}
+
+.card h2 {
+    color: #1769aa;
+    margin-top: 0;
+}
+
+ul {
+    line-height: 1.8;
+}
+
+.warning {
+    background: #fff3cd;
+    border-left: 6px solid #ffc107;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.safe-box {
+    background: #dff6e4;
+    border-left: 6px solid #28a745;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+/* Анализатор */
+
+.analyzer {
+    border: 3px solid #1769aa;
+}
+
+textarea {
+    width: 100%;
+    min-height: 150px;
+    resize: vertical;
+    padding: 15px;
+    border: 2px solid #ccd8e5;
+    border-radius: 12px;
+    font-size: 16px;
+    outline: none;
+}
+
+textarea:focus {
+    border-color: #1769aa;
+}
+
+button {
+    background: #1769aa;
+    color: white;
+    border: none;
+    padding: 13px 22px;
+    border-radius: 9px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 12px;
+}
+
+button:hover {
+    background: #0d4f82;
+}
+
+.test-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.test-buttons button {
+    background: #607d8b;
+    font-size: 14px;
+}
+
+#result {
+    display: none;
+    margin-top: 20px;
+    padding: 18px;
+    border-radius: 12px;
+}
+
+.danger {
+    background: #ffe1e1;
+    border: 2px solid #e53935;
+    color: #b71c1c;
+}
+
+.suspicious {
+    background: #fff1d6;
+    border: 2px solid #ff9800;
+    color: #e65100;
+}
+
+.safe {
+    background: #ddf7e4;
+    border: 2px solid #2e7d32;
+    color: #1b5e20;
+}
+
+.status {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.reasons-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.reason {
+    background: white;
+    color: #333;
+    padding: 9px;
+    margin: 7px 0;
+    border-radius: 7px;
+}
+
+.example {
+    background: #f5f8fc;
+    border: 1px solid #d8e1eb;
+    padding: 12px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+footer {
+    text-align: center;
+    background: #12344d;
+    color: white;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 26px;
+    }
+
+    .card {
+        padding: 17px;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    .test-buttons button {
+        width: 100%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🔐 CYBER ALERT</h1>
+    <p>Әлеуметтік желілердегі жеке деректерді қорғау</p>
+</header>
+
+<div class="container">
+
+<!-- НЕГІЗГІ ТЕКСЕРГІШ -->
+
+<div class="card analyzer">
+
+<h2>🛡️ Хабарламаны тексеру</h2>
+
+<p>
+Күмәнді SMS немесе хабарламаны төмендегі жерге енгізіңіз.
+Жүйе қауіпті белгілерді автоматты түрде анықтайды.
+</p>
+
+<textarea id="message"
+placeholder="Мысалы: Сіз 500 000 теңге ұтып алдыңыз! Сыйлықты алу үшін сілтемеге өтіп, карта нөміріңізді енгізіңіз."></textarea>
+
+<button onclick="analyzeMessage()">
+🔍 Тексеру
+</button>
+
+<div id="result"></div>
+
+</div>
+
+
+<!-- ТЕСТ МЫСАЛДАРЫ -->
+
+<div class="card">
+
+<h2>🧪 Тест үшін мысалдар</h2>
+
+<p>Төмендегі батырмаларды басып, жүйені тексеруге болады:</p>
+
+<div class="test-buttons">
+
+<button onclick="setExample(1)">
+🔴 Қауіпті SMS
+</button>
+
+<button onclick="setExample(2)">
+🔴 SMS код сұрау
+</button>
+
+<button onclick="setExample(3)">
+🟠 Күмәнді SMS
+</button>
+
+<button onclick="setExample(4)">
+🟢 Қауіпсіз SMS
+</button>
+
+</div>
+
+<div class="example">
+<b>Мысал 1:</b><br>
+Сіз 500 000 теңге ұтып алдыңыз! Сыйлықты алу үшін
+https://example.com сайтына өтіп, карта нөміріңізді және CVV кодты енгізіңіз.
+</div>
+
+<div class="example">
+<b>Мысал 2:</b><br>
+Банк қызметкеріміз. Қауіпсіздік үшін SMS арқылы келген
+кодты жіберіңіз.
+</div>
+
+<div class="example">
+<b>Мысал 3:</b><br>
+Аккаунтыңыз бұғатталуы мүмкін. Тексеру үшін ақпаратты жаңартыңыз.
+</div>
+
+<div class="example">
+<b>Мысал 4:</b><br>
+Сәлеметсіз бе! Ертең сағат 10:00-де ата-аналар жиналысы болады.
+</div>
+
+</div>
+
+
+<!-- ЖЕКЕ ДЕРЕКТЕР -->
+
+<div class="card">
+
+<h2>📱 Жеке деректер дегеніміз не?</h2>
+
+<p>
+Жеке деректер — адамды анықтауға мүмкіндік беретін ақпарат.
+</p>
+
+<ul>
+<li>Аты-жөні</li>
+<li>Телефон нөмірі</li>
+<li>Мекенжайы</li>
+<li>Құпиясөздері</li>
+<li>Жеке фотосуреттері</li>
+<li>Банк картасының мәліметтері</li>
+</ul>
+
+</div>
+
+
+<!-- ҚАУІПТЕР -->
+
+<div class="card">
+
+<h2>⚠️ Негізгі қауіптер</h2>
+
+<div class="warning">
+
+<p>❗ Бейтаныс адамдардың хабарламалары</p>
+<p>❗ Жалған аккаунттар</p>
+<p>❗ Фишингтік сілтемелер</p>
+<p>❗ Құпиясөзді ұрлау</p>
+<p>❗ Жеке ақпаратты рұқсатсыз тарату</p>
+
+</div>
+
+</div>
+
+
+<!-- ҚАУІПСІЗДІК -->
+
+<div class="card">
+
+<h2>🛡️ Қауіпсіздік ережелері</h2>
+
+<div class="safe-box">
+
+<p>✅ Күрделі құпиясөз қолданыңыз.</p>
+<p>✅ Екі факторлы қорғауды қосыңыз.</p>
+<p>✅ Бейтаныс сілтемелерді ашпаңыз.</p>
+<p>✅ Құпиясөзді ешкімге айтпаңыз.</p>
+<p>✅ SMS кодты басқа адамға жібермеңіз.</p>
+<p>✅ Банк картасының мәліметтерін бермеңіз.</p>
+
+</div>
+
+</div>
+
+
+<!-- ЕСТЕ САҚТА -->
+
+<div class="card">
+
+<h2>🔑 Есте сақта!</h2>
+
+<p>
+Интернеттегі қауіпсіздік — өз қолыңда!
+Жеке деректеріңді қорға және күмәнді ақпаратқа сенбе.
+</p>
+
+</div>
+
+</div>
+
+
+<footer>
+<p>© 2026 Cyber Alert | Интернет қауіпсіздігі</p>
+</footer>
+
+
+<script>
+
+function analyzeMessage() {
+
+    const text = document.getElementById("message").value.trim();
+    const result = document.getElementById("result");
+
+    if (text === "") {
+        result.style.display = "block";
+        result.className = "suspicious";
+        result.innerHTML = `
+            <div class="status">⚠️ Мәтін енгізіңіз</div>
+            <p>Тексеру үшін хабарлама жазыңыз.</p>
+        `;
+        return;
+    }
+
+    const lower = text.toLowerCase();
+
+    let score = 0;
+    let reasons = [];
+
+    /* 1. СІЛТЕМЕ */
+
+    const urlRegex = /(https?:\/\/|www\.|t\.me\/|bit\.ly\/|tinyurl\.com\/|wa\.me\/)[^\s]+/i;
+
+    if (urlRegex.test(text)) {
+        score += 5;
+
+        reasons.push(
+            "🔗 Сілтеме анықталды — жоба ережесі бойынша қауіпті белгі."
+        );
+    }
+
+
+    /* 2. БАНК КАРТАСЫ */
+
+    const cardRegex = /\b(?:\d[ -]*?){13,19}\b/;
+
+    if (cardRegex.test(text)) {
+        score += 6;
+
+        reasons.push(
+            "💳 Банк картасының нөміріне ұқсас сан анықталды."
+        );
+    }
+
+
+    /* 3. CVV / CVC */
+
+    const cvvRegex =
+        /(cvv|cvc|қауіпсіздік коды|код безопасности)[^\d]{0,20}\d{3,4}/i;
+
+    if (cvvRegex.test(text)) {
+        score += 6;
+
+        reasons.push(
+            "🔐 CVV/CVC немесе қауіпсіздік коды сұралған."
+        );
+    }
+
+
+    /* 4. SMS / OTP КОД */
+
+    const otpWords =
+        /(sms код|смс код|код из смс|одноразовый код|код подтверждения|растау коды|бір реттік код|otp|verification code)/i;
+
+    const requestWords =
+        /(жібер|жібере|айтыңыз|жазыңыз|енгіз|введите|отправьте|сообщите|скажите|предоставьте|введите код)/i;
+
+    if (otpWords.test(lower) && requestWords.test(lower)) {
+
+        score += 6;
+
+        reasons.push(
+            "📲 SMS/OTP растау коды басқа адамға беруді сұрайды."
+        );
+    }
+
+
+    /* 5. ҚҰПИЯСӨЗ */
+
+    const passwordWords =
+        /(пароль|құпиясөз|құпия сөз|пароліңіз|логин|login|password)/i;
+
+    if (passwordWords.test(lower) && requestWords.test(lower)) {
+
+        score += 5;
+
+        reasons.push(
+            "🔑 Құпиясөз немесе логин мәліметін енгізу/жіберу сұралған."
+        );
+    }
+
+
+    /* 6. БАНК МӘЛІМЕТТЕРІ */
+
+    const bankWords =
+        /(банк картасы|карта нөмірі|номер карты|банковская карта|iban|бик|банк шоты|банковский счет|кредит)/i;
+
+    if (bankWords.test(lower) && requestWords.test(lower)) {
+
+        score += 5;
+
+        reasons.push(
+            "🏦 Банк немесе карта мәліметтері сұралған."
+        );
+    }
+
+
+    /* 7. ҰТЫС / СЫЙЛЫҚ */
+
+    const prizeWords =
+        /(ұтып алдыңыз|ұтып|ұтыс|жүлде|сыйлық|вы выиграли|выигрыш|приз|подарок|лотерея)/i;
+
+    if (prizeWords.test(lower)) {
+
+        score += 4;
+
+        reasons.push(
+            "🎁 Ұтыс немесе сыйлық туралы хабарлама анықталды."
+        );
+    }
+
+
+    /* 8. АҚША */
+
+    const moneyWords =
+        /(ақша|теңге|тенге|₸|рубль|рублей|доллар|миллион|500 000|1000000|1 000 000|ақша алу|получить деньги)/i;
+
+    if (moneyWords.test(lower)) {
+
+        score += 2;
+
+        reasons.push(
+            "💰 Ақша немесе қаржылық ұсыныс анықталды."
+        );
+    }
+
+
+    /* 9. ШҰҒЫЛДЫҚ */
+
+    const urgencyWords =
+        /(шұғыл|жедел|қазір|тез|срочно|немедленно|сейчас|аккаунт бұғатталады|аккаунтыңыз бұғатталады|аккаунт заблокируют|заблокирован|истекает)/i;
+
+    if (urgencyWords.test(lower)) {
+
+        score += 3;
+
+        reasons.push(
+            "⏰ Шұғыл әрекет жасауға қысым көрсетілген."
+        );
+    }
+
+
+    /* 10. БАНК ҚЫЗМЕТКЕРІ */
+
+    const authorityWords =
+        /(банк қызметкері|служба безопасности банка|служба безопасности|полиция|салық қызметі|налоговая|қауіпсіздік қызметі)/i;
+
+    if (authorityWords.test(lower) && requestWords.test(lower)) {
+
+        score += 4;
+
+        reasons.push(
+            "👤 Банк/қауіпсіздік қызметкері ретінде мәлімет сұрау белгісі бар."
+        );
+    }
+
+
+    /* НӘТИЖЕ */
+
+    let status = "";
+    let className = "";
+    let advice = "";
+
+    if (score >= 5) {
+
+        status = "🔴 ҚАУІПТІ";
+        className = "danger";
+
+        advice =
+            "Бұл хабарламада бірнеше қауіпті белгі анықталды. Жеке деректерді, карта мәліметтерін немесе кодтарды бермеңіз.";
+
+    } else if (score >= 2) {
+
+        status = "🟠 КҮМӘНДІ";
+        className = "suspicious";
+
+        advice =
+            "Хабарламада күмәнді белгілер бар. Ақпаратты тексермей тұрып сілтемеге өтпеңіз және жеке деректерді жібермеңіз.";
+
+    } else {
+
+        status = "🟢 ҚАУІПСІЗ";
+        className = "safe";
+
+        advice =
+            "Айқын қауіпті белгі анықталған жоқ. Дегенмен бейтаныс адамдарға жеке деректерді бермеңіз.";
+    }
+
+
+    let reasonsHTML = "";
+
+    if (reasons.length > 0) {
+
+        reasonsHTML = `
+            <div class="reasons-title">
+                🔎 Анықталған белгілер:
+            </div>
+        `;
+
+        reasons.forEach(function(reason) {
+
+            reasonsHTML += `
+                <div class="reason">
+                    ${reason}
+                </div>
+            `;
+
+        });
+
+    } else {
+
+        reasonsHTML = `
+            <div class="reasons-title">
+                🔎 Анықталған белгілер:
+            </div>
+
+            <div class="reason">
+                ✅ Қауіпті белгі анықталған жоқ.
+            </div>
+        `;
+    }
+
+
+    result.style.display = "block";
+
+    result.className = className;
+
+    result.innerHTML = `
+
+        <div class="status">
+            ${status}
+        </div>
+
+        <p>
+            <b>Бағалау:</b> ${score} балл
+        </p>
+
+        ${reasonsHTML}
+
+        <div class="reasons-title">
+            💡 Ұсыныс:
+        </div>
+
+        <div class="reason">
+            ${advice}
+        </div>
+
+    `;
+
+}
+
+
+/* ТЕСТ МЫСАЛДАРЫ */
+
+function setExample(number) {
+
+    const message = document.getElementById("message");
+
+    if (number === 1) {
+
+        message.value =
+        "Сіз 500 000 теңге ұтып алдыңыз! Сыйлықты алу үшін https://example.com сайтына өтіп, карта нөміріңізді және CVV кодты енгізіңіз.";
+
+    }
+
+    if (number === 2) {
+
+        message.value =
+        "Банк қызметкеріміз. Қауіпсіздік үшін SMS арқылы келген кодты жіберіңіз.";
+
+    }
+
+    if (number === 3) {
+
+        message.value =
+        "Аккаунтыңыз бұғатталуы мүмкін. Тексеру үшін ақпаратты жаңартыңыз.";
+
+    }
+
+    if (number === 4) {
+
+        message.value =
+        "Сәлеметсіз бе! Ертең сағат 10:00-де ата-аналар жиналысы болады.";
+
+    }
+
+    analyzeMessage();
+}
+
+</script>
+
+</body>
+</html>
